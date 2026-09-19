@@ -1,49 +1,33 @@
-# QuickPrint MVP
+# QuickPrint
 
-A lightweight MVP for the Xerox booking platform that lets users:
-- register or log in
-- browse nearby xerox shops
-- compare price estimates
-- place an order
-- track order status
+Production-oriented printing and Xerox booking platform for students and local print shops.
 
-This repository contains a simple Node.js + Express backend and a React + Vite frontend.
+## Architecture
+- `frontend`: React + Vite + Tailwind-style design tokens, React Router, Firebase Auth/Firestore/Storage adapters, Leaflet map, role-protected customer/shop-owner workspaces.
+- `server`: Express API with modular routes, Firebase Admin verification hooks, Razorpay payment service structure, validation and centralized errors.
+- Firebase is the source of truth when configured. The clearly labelled `VITE_DEMO_MODE=true` mode is only for local UI demonstrations without credentials.
 
-## Stack
-- Frontend: React + Vite
-- Backend: Node.js + Express
-- Data: In-memory store for MVP demo
-- Authentication: JWT-based mock auth
+## Features
+Landing page, email/password and Google auth, role-based routing, document upload to Firebase Storage, configurable pricing, nearby shops/map, multi-step ordering, Razorpay order/verification endpoints, realtime Firestore order listeners, order history, reviews, notifications, customer dashboard, shop-owner dashboard, pricing/shop management, responsive accessibility states.
 
-## Quick start
+## Setup
 
-### 1) Backend
-
+### Frontend
 ```bash
-cd backend
+cd frontend
 cp .env.example .env
 npm install
 npm run dev
 ```
 
-API runs at: http://localhost:5000
-
-### 2) Frontend
-
+### Backend
 ```bash
-cd frontend
+cd server
+cp .env.example .env
 npm install
 npm run dev
 ```
 
-Frontend runs at: http://localhost:5173
+See `docs/SETUP.md` for Firebase, Storage, Firestore rules, Maps, Razorpay, Vercel and Render setup.
 
-## Demo flow
-1. Register a customer account
-2. Allow geolocation or use default coordinates
-3. Select a nearby shop
-4. Fill order requirements and submit
-5. View generated order summary and tracking details
-
-## Notes
-This is intentionally built as an MVP for demo and hackathon purposes. It uses in-memory data instead of a production database and cloud services.
+Never commit `.env` or Firebase Admin private keys.
