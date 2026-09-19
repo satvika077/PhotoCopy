@@ -1,0 +1,1 @@
+  if (order.numberOfCopies === undefined || order.numberOfCopies === null) order.numberOfCopies = 1;
